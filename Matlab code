@@ -1,0 +1,48 @@
+original = imread('Real.jpg');
+fake = imread('fake.jpg');
+original_gray = rgb2gray(original);
+fake_gray = rgb2gray(fake);
+figure;
+subplot(2, 1, 1),imshow(original),title('Original note');
+subplot(2, 1, 2),imshow(fake),title('Fake note');
+% Extract gandhiji from original note
+original_extract = original_gray(330:1200, 1016:1927);
+% Extract gandhiji from fake note
+fake_extract = fake_gray(170:1040, 716:1627);
+figure;
+subplot(1, 2, 1),imshow(original_extract),title('Original note gandhiji');
+subplot(1, 2, 2),imshow(fake_extract),title('Fake note gandhiji');
+% Extract thin strip from real note
+original_strip = original_gray(5:1100, 2070:2151);
+% Extracct thin strip from fake
+fake_strip = fake_gray(5:1100, 1650:1730);
+figure;
+subplot(1, 2, 1),imshow(original_strip),title('Original note strip');
+subplot(1, 2, 2),imshow(fake_strip),title('Fake note strip');
+% Converting in hsv color space and comparing result
+original_hsv = rgb2hsv(original);
+fake_hsv = rgb2hsv(fake);
+figure;
+subplot(2, 1, 1),imshow(original_hsv),title('Original HSV');
+subplot(2, 1, 2),imshow(fake_hsv),title('Fake HSV');
+% Comparing the hue component
+original_hue = original_hsv(:,:,1);
+fake_hue = fake_hsv(:,:,1);
+figure;
+subplot(2, 1, 1),histogram(original_hue, 'Normalization', 'probability', 'BinEdges', linspace(0, 1, 50), 'FaceColor', 'b'),title('Original Banknote - Hue Histogram');
+subplot(2, 1, 2),histogram(fake_hue, 'Normalization', 'probability', 'BinEdges', linspace(0, 1, 50), 'FaceColor', 'r'),title('Fake Banknote - Hue Histogram');
+% Apply canny edge detection
+original_edge = edge(original_gray, 'Canny');
+fake_edge = edge(fake_gray, 'Canny');
+%Display the original and fake banknotes along with their edges
+figure;
+subplot(2, 1, 1),imshow(original_edge),title('Edges - Original');
+subplot(2, 1, 2),imshow(fake_edge),title('Edges - Fake');
+% Texture analysis with GLCM(Gray-Level Co-occurrence Matrix)
+glcm_original = graycomatrix(original_gray);
+glcm_fake = graycomatrix(fake_gray);
+% Extract contrast feature from GLCM
+contrast_original = graycoprops(glcm_original, 'Contrast');
+contrast_fake = graycoprops(glcm_fake, 'Contrast');
+disp(['Contrast - Original: ', num2str(contrast_original.Contrast)]);
+disp(['Contrast - Fake: ', num2str(contrast_fake.Contrast)]);
