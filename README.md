@@ -2,7 +2,7 @@
 
   This project talks about a detailed way to find fake money using computer techniques to look at pictures. The study uses methods like pulling out certain parts of the picture, checking different colors, comparing how many times each color appears, finding edges, and studying textures using something called the Gray-Level Co-occurrence Matrix (GLCM). The aim is to see if there are any differences between a real money picture and a possibly fake one. The results show that this method is good at finding fake money by looking at things like color patterns, small details, and how the textures look.
 
-  Finding fake money is important to keep our money system working well. This project looks into using smart computer techniques to make it easier to spot fake banknotes. We're using things like pulling out specific parts of the picture, checking different colors, and studying how the textures look. Our goal is to create a way that's better than the usual methods to find fake money
+  Finding fake money is important to keep our money system working well. This project looks into using smart computer techniques to make it easier to spot fake banknotes. We're using things like pulling out specific parts of the picture, checking different colors, and studying how the textures look. Our goal is to create a way that's better than the usual methods to find fake money.
 
 1) Comparison of Notes:
 
